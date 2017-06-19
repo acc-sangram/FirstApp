@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<bean id = "bluedartCourier" class="com.ba.beans.BlueDart">
+	</bean>
+	
+	<bean id = "dtdcCourier" class="com.ba.beans.DTDC">
+	</bean>
+	
+	<!-- 
+	<bean id = "blueDartCourierImpl" class="com.ba.beans.BlueDartCourierImpl">
+		<property name="blueDart" ref="bluedartCourier"/>
+	</bean>
+	 -->
+	<bean id = "dtdcCourierImpl"  name="blueDartCourierImpl" class="com.ba.beans.DTDCCourierImpl">
+		<property name="dtdc" ref="dtdcCourier"/>
+	</bean>
+	
+	<bean id="orderManager" class="com.ba.beans.OrderManager">
+		<property name="DTDCCourierTransport" ref="dtdcCourierImpl"/>
+		
+		<property name="BluedartCourierTransport" ref="blueDartCourierImpl"/>
+	</bean>
+		
+</beans>
